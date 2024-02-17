@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import { type User } from './types'
 import UsersList from './components/UsersList'
+import HeaderButtons from './components/HeaderButtons'
 
 function App() {
   const [users, setUsers] = useState<User[]>([])
@@ -51,7 +52,14 @@ function App() {
   return (
     <div className='App'>
       <h1>Random Users List</h1>
-      <header className='buttons'>
+      <HeaderButtons
+        toggleRowColors={toggleRowColors}
+        areUsersAltered={areUsersAltered}
+        handleResetUsers={handleResetUsers}
+        sortByCountry={sortByCountry}
+        sortedByCountry={sortedByCountry}
+      />
+      {/* <header className='buttons'>
         <button onClick={toggleRowColors}>Color Rows</button>
         <button onClick={sortByCountry}>
           {sortedByCountry ? 'Default Order ' : 'Sort by Country'}
@@ -59,7 +67,7 @@ function App() {
         <button onClick={handleResetUsers} disabled={!areUsersAltered}>
           Reset users
         </button>
-      </header>
+      </header> */}
       <main>
         <UsersList
           users={sortedUsers}
