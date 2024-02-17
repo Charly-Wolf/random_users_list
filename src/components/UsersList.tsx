@@ -33,6 +33,7 @@ const UsersList = ({ users, showRowColors, deleteUser }: Props) => {
               <td>{user.location.country}</td>
               <td>
                 <button
+                  className='delete-btn'
                   onClick={() => {
                     deleteUser(user)
                   }}

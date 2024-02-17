@@ -46,9 +46,13 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:not(:disabled):hover  {
+button:not(:disabled):hover {
   /* border-color: #646cff; */
   border-color: #0a9c9a;
+}
+
+button.delete-btn:hover {
+  border-color: #d31010;
 }
 
 button:focus,
@@ -68,4 +72,3 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
-
