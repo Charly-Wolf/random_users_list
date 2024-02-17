@@ -7,6 +7,7 @@ interface Props {
   setFilterCountry: Dispatch<SetStateAction<string | null>>
   sortedByCountry: boolean
   areUsersAltered: boolean
+  filterCountry: string | null
 }
 
 const HeaderButtons = ({
@@ -16,11 +17,15 @@ const HeaderButtons = ({
   sortedByCountry,
   areUsersAltered,
   setFilterCountry,
+  filterCountry,
 }: Props) => {
   return (
     <header className='buttons'>
       <button onClick={toggleRowColors}>Color Rows</button>
-      <button onClick={sortByCountry}>
+      <button
+        onClick={sortByCountry}
+        disabled={filterCountry !== null && filterCountry.length > 0}
+      >
         {sortedByCountry ? 'Default Order ' : 'Sort by Country'}
       </button>
       <button onClick={handleResetUsers} disabled={!areUsersAltered}>

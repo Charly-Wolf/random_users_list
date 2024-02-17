@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import './App.css'
 import { type User } from './types'
 import UsersList from './components/UsersList'
@@ -32,25 +32,24 @@ function App() {
     setAreUsersAltered(false)
   }
 
-  const sortUsers = (users: User[]) => {
-    return sortedByCountry
-      ? users.toSorted((a: User, b: User) => {
-          // toSorted creates a copy of the users array, instead of mutating the original one (.sort does that)
-          return a.location.country.localeCompare(b.location.country)
-        })
-      : users
-  }
-
-  const filteredUsers =
-    filterCountry !== null && filterCountry.length > 0
+  const filteredUsers = useMemo(() => {
+    return filterCountry !== null && filterCountry.length > 0
       ? users.filter(u => {
           return u.location.country
             .toLowerCase()
             .includes(filterCountry.toLowerCase())
         })
       : users
+  }, [users, filterCountry])
 
-  const sortedUsers = sortUsers(filteredUsers)
+  const sortedUsers = useMemo(() => {
+    return sortedByCountry
+      ? filteredUsers.toSorted((a: User, b: User) => {
+          // toSorted creates a copy of the users array, instead of mutating the original one (.sort does that)
+          return a.location.country.localeCompare(b.location.country)
+        })
+      : filteredUsers
+  }, [filteredUsers, sortByCountry])
 
   useEffect(() => {
     fetch('https://randomuser.me/api?results=100')
@@ -73,6 +72,7 @@ function App() {
         sortByCountry={sortByCountry}
         sortedByCountry={sortedByCountry}
         setFilterCountry={setFilterCountry}
+        filterCountry={filterCountry}
       />
       <main>
         <UsersList
