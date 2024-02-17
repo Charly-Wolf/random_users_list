@@ -14,7 +14,7 @@
 - 🔍 Allows sorting users by country, first name, or last name.
 - 🎨 Supports toggling row colors for better visualization.
 - 🗑️ Enables deleting individual users from the list.
-- 🔄 Provides functionality to reset the user list to its original state.
+- 🔄 Provides functionality to reset the user list to its original state as well as to undo sorting.
 - 🌘 Allows toggling between Light and Dark themes
 
 ## Technologies Used
