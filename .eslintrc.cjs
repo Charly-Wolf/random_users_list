@@ -27,6 +27,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/no-unsafe-argument': 'off',
     '@typescript-eslint/indent': 'off',
+    '@typescript-eslint/comma-dangle': 'off',
   },
   ignorePatterns: ['.eslintrc.cjs'],
 }

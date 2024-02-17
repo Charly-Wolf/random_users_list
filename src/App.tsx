@@ -9,6 +9,7 @@ function App() {
   const [showRowColors, setShowRowColors] = useState(false)
   const [sortedByCountry, setSortedByCountry] = useState(false)
   const [areUsersAltered, setAreUsersAltered] = useState(false)
+  const [filterCountry, setFilterCountry] = useState<string | null>(null)
 
   const originalUsers = useRef<User[]>([]) // Saves a value to be shared between renders. When this value changes, the component does not rerender
 
@@ -31,12 +32,21 @@ function App() {
     setAreUsersAltered(false)
   }
 
+  const filteredUsers =
+    typeof filterCountry === 'string' && filterCountry.length > 0
+      ? users.filter(u => {
+          return u.location.country
+            .toLowerCase()
+            .includes(filterCountry.toLowerCase())
+        })
+      : users
+
   const sortedUsers = sortedByCountry
-    ? users.toSorted((a: User, b: User) => {
+    ? filteredUsers.toSorted((a: User, b: User) => {
         // toSorted creates a copy of the users array, instead of mutating the original one (.sort does that)
         return a.location.country.localeCompare(b.location.country)
       })
-    : users
+    : filteredUsers
 
   useEffect(() => {
     fetch('https://randomuser.me/api?results=100')
@@ -58,6 +68,7 @@ function App() {
         handleResetUsers={handleResetUsers}
         sortByCountry={sortByCountry}
         sortedByCountry={sortedByCountry}
+        setFilterCountry={setFilterCountry}
       />
       <main>
         <UsersList

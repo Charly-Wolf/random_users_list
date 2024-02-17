@@ -1,7 +1,10 @@
+import { type Dispatch, type SetStateAction } from 'react'
+
 interface Props {
   toggleRowColors: () => void
   sortByCountry: () => void
   handleResetUsers: () => void
+  setFilterCountry: Dispatch<SetStateAction<string | null>>
   sortedByCountry: boolean
   areUsersAltered: boolean
 }
@@ -11,7 +14,8 @@ const HeaderButtons = ({
   sortByCountry,
   handleResetUsers,
   sortedByCountry,
-  areUsersAltered
+  areUsersAltered,
+  setFilterCountry,
 }: Props) => {
   return (
     <header className='buttons'>
@@ -22,6 +26,13 @@ const HeaderButtons = ({
       <button onClick={handleResetUsers} disabled={!areUsersAltered}>
         Reset users
       </button>
+      <input
+        type='text'
+        placeholder='Filter by country'
+        onChange={e => {
+          setFilterCountry(e.target.value)
+        }}
+      />
     </header>
   )
 }
