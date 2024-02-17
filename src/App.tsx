@@ -32,8 +32,17 @@ function App() {
     setAreUsersAltered(false)
   }
 
+  const sortUsers = (users: User[]) => {
+    return sortedByCountry
+      ? users.toSorted((a: User, b: User) => {
+          // toSorted creates a copy of the users array, instead of mutating the original one (.sort does that)
+          return a.location.country.localeCompare(b.location.country)
+        })
+      : users
+  }
+
   const filteredUsers =
-    typeof filterCountry === 'string' && filterCountry.length > 0
+    filterCountry !== null && filterCountry.length > 0
       ? users.filter(u => {
           return u.location.country
             .toLowerCase()
@@ -41,12 +50,7 @@ function App() {
         })
       : users
 
-  const sortedUsers = sortedByCountry
-    ? filteredUsers.toSorted((a: User, b: User) => {
-        // toSorted creates a copy of the users array, instead of mutating the original one (.sort does that)
-        return a.location.country.localeCompare(b.location.country)
-      })
-    : filteredUsers
+  const sortedUsers = sortUsers(filteredUsers)
 
   useEffect(() => {
     fetch('https://randomuser.me/api?results=100')
