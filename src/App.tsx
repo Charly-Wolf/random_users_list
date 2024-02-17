@@ -96,7 +96,6 @@ function App() {
           showRowColors={showRowColors}
           deleteUser={handleDeleteUser}
           changeSort={handleChangeSort}
-          sorted={sorted}
         />
       </main>
     </div>
