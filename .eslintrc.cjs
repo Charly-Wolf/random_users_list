@@ -26,6 +26,7 @@ module.exports = {
     '@typescript-eslint/space-before-function-paren': 'off',
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/no-unsafe-argument': 'off',
+    '@typescript-eslint/indent': 'off',
   },
   ignorePatterns: ['.eslintrc.cjs'],
 }
