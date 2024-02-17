@@ -19,12 +19,10 @@ const UsersList = ({ users, showRowColors, deleteUser }: Props) => {
         </tr>
       </thead>
 
-      <tbody>
-        {users.map((user, index) => {
-          const backgroundRowColor = index % 2 === 0 ? '#333' : '#555'
-          const color = showRowColors ? backgroundRowColor : 'transparent'
+      <tbody className={showRowColors ? 'table-striped' : ''}>
+        {users.map(user => {
           return (
-            <tr key={user.login.uuid} style={{ backgroundColor: color }}>
+            <tr key={user.login.uuid}>
               <td>
                 <img src={user.picture.thumbnail} />
               </td>

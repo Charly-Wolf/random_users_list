@@ -12,3 +12,11 @@ header.buttons {
   gap: 2rem;
   margin-bottom: 2rem;
 }
+
+.table-striped tr:nth-child(even) {
+  background-color: #333;
+}
+
+.table-striped tr:nth-child(odd) {
+  background-color: #555;
+}
