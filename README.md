@@ -15,6 +15,7 @@
 - 🎨 Supports toggling row colors for better visualization.
 - 🗑️ Enables deleting individual users from the list.
 - 🔄 Provides functionality to reset the user list to its original state.
+- 🌘 Allows toggling between Light and Dark themes
 
 ## Technologies Used
 
