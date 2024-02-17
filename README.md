@@ -2,11 +2,11 @@
 
 👋 Welcome to the Random Users List React App ⚛️!
 
+- You can directly access the deployed version of this app by navigating to [react-random-users-list.netlify.app](https://react-random-users-list.netlify.app/), or if you prefer to run it locally, follow the [installation and setup guide](#installation-and-setup) below.
+
 - This is a React application that fetches random user data from the [Random User Generator API](https://randomuser.me/) and displays it in a list format.
 
 - Users can perform various actions like sorting users by country, first name, or last name, toggle row colors, delete users, and reset the user list to its original state.
-
-- You can directly access the deployed version of this app by navigating to [react-random-users-list.netlify.app](https://react-random-users-list.netlify.app/), or if you prefer to run it locally, follow the [installation and setup guide](#installation-and-setup) below.
 
 ## Features
 
