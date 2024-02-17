@@ -3,6 +3,7 @@ import './App.css'
 import { SortBy, type User } from './types.d'
 import UsersList from './components/UsersList'
 import HeaderButtons from './components/HeaderButtons'
+import ThemeToggle from './components/ThemeToggle'
 
 function App() {
   const [users, setUsers] = useState<User[]>([])
@@ -81,6 +82,7 @@ function App() {
   }, [])
   return (
     <div className='App'>
+      <ThemeToggle />
       <h1>Random Users List</h1>
       <HeaderButtons
         toggleRowColors={toggleRowColors}

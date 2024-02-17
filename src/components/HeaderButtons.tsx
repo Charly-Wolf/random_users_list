@@ -21,9 +21,7 @@ const HeaderButtons = ({
   return (
     <header className='buttons'>
       <button onClick={toggleRowColors}>Color Rows</button>
-      <button
-        onClick={toggleSortByCountry}
-      >
+      <button onClick={toggleSortByCountry}>
         {sorted === SortBy.COUNTRY ? 'Default Order ' : 'Sort by Country'}
       </button>
       <button onClick={resetUsers} disabled={!areUsersAltered}>

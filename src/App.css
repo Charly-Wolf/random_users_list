@@ -1,26 +1,7 @@
 #root {
   max-width: 90%;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0.5rem;
   text-align: center;
   width: 100%;
-}
-
-header.buttons {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.table-striped tr:nth-child(even) {
-  background-color: #333;
-}
-
-.table-striped tr:nth-child(odd) {
-  background-color: #555;
-}
-
-.pointer {
-  cursor: pointer;
 }
