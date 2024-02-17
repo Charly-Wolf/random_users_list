@@ -1,7 +1,7 @@
 // Types generated with https://app.quicktype.io
 
 export interface APIResults {
-  results: Result[]
+  results: User[]
   info: Info
 }
 
