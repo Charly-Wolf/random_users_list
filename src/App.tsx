@@ -8,7 +8,7 @@ function App() {
   const [showRowColors, setShowRowColors] = useState(false)
 
   const toggleRowColors = () => {
-    setShowRowColors(!showRowColors)
+    setShowRowColors(prevSate => !prevSate)
   }
 
   useEffect(() => {
