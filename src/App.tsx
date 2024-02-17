@@ -51,7 +51,7 @@ function App() {
   return (
     <div className='App'>
       <h1>Random Users List</h1>
-      <header>
+      <header className='buttons'>
         <button onClick={toggleRowColors}>Color Rows</button>
         <button onClick={sortByCountry}>
           {sortedByCountry ? 'Default Order ' : 'Sort by Country'}
