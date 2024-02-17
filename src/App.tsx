@@ -18,10 +18,8 @@ function App() {
     setShowRowColors(prevSate => !prevSate)
   }
 
-  const toggleSortByCountry = () => {
-    const newSortingValue =
-      sorted !== SortBy.COUNTRY ? SortBy.COUNTRY : SortBy.NONE
-    setSorted(newSortingValue)
+  const resetSorting = () => {
+    setSorted(SortBy.NONE)
   }
 
   const handleDeleteUser = (user: User) => {
@@ -88,7 +86,7 @@ function App() {
         toggleRowColors={toggleRowColors}
         areUsersAltered={areUsersAltered}
         resetUsers={handleResetUsers}
-        toggleSortByCountry={toggleSortByCountry}
+        resetSorting={resetSorting}
         sorted={sorted}
         setFilterCountry={setFilterCountry}
       />
@@ -98,6 +96,7 @@ function App() {
           showRowColors={showRowColors}
           deleteUser={handleDeleteUser}
           changeSort={handleChangeSort}
+          sorted={sorted}
         />
       </main>
     </div>

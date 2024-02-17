@@ -3,7 +3,7 @@ import { SortBy } from '../types.d'
 
 interface Props {
   toggleRowColors: () => void
-  toggleSortByCountry: () => void
+  resetSorting: () => void
   resetUsers: () => void
   setFilterCountry: Dispatch<SetStateAction<string | null>>
   sorted: SortBy
@@ -12,23 +12,21 @@ interface Props {
 
 const HeaderButtons = ({
   toggleRowColors,
-  toggleSortByCountry,
+  resetSorting,
   resetUsers,
-  sorted,
   areUsersAltered,
   setFilterCountry,
+  sorted
 }: Props) => {
   return (
     <header className='buttons'>
       <button onClick={toggleRowColors}>Color Rows</button>
-      <button onClick={toggleSortByCountry}>
-        {sorted === SortBy.COUNTRY ? 'Default Order ' : 'Sort by Country'}
-      </button>
+      <button onClick={resetSorting} disabled={sorted === SortBy.NONE}>Reset Sorting</button>
       <button onClick={resetUsers} disabled={!areUsersAltered}>
         Reset users
       </button>
       <input
-        type='text'
+        type='search'
         placeholder='Filter by country'
         onChange={e => {
           setFilterCountry(e.target.value)
