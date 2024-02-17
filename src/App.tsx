@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import './App.css'
-import { type User } from './types'
+import { SortBy, type User } from './types.d'
 import UsersList from './components/UsersList'
 import HeaderButtons from './components/HeaderButtons'
 
 function App() {
   const [users, setUsers] = useState<User[]>([])
   const [showRowColors, setShowRowColors] = useState(false)
-  const [sortedByCountry, setSortedByCountry] = useState(false)
+  const [sorted, setSorted] = useState<SortBy>(SortBy.NONE)
   const [areUsersAltered, setAreUsersAltered] = useState(false)
   const [filterCountry, setFilterCountry] = useState<string | null>(null)
 
@@ -17,8 +17,10 @@ function App() {
     setShowRowColors(prevSate => !prevSate)
   }
 
-  const sortByCountry = () => {
-    setSortedByCountry(prevState => !prevState)
+  const toggleSortByCountry = () => {
+    const newSortingValue =
+      sorted !== SortBy.COUNTRY ? SortBy.COUNTRY : SortBy.NONE
+    setSorted(newSortingValue)
   }
 
   const handleDeleteUser = (user: User) => {
@@ -32,6 +34,10 @@ function App() {
     setAreUsersAltered(false)
   }
 
+  const handleChangeSort = (sort: SortBy) => {
+    setSorted(sorted === sort ? SortBy.NONE : sort)
+  }
+
   const filteredUsers = useMemo(() => {
     return filterCountry !== null && filterCountry.length > 0
       ? users.filter(u => {
@@ -43,13 +49,24 @@ function App() {
   }, [users, filterCountry])
 
   const sortedUsers = useMemo(() => {
-    return sortedByCountry
-      ? filteredUsers.toSorted((a: User, b: User) => {
+    switch (sorted) {
+      case SortBy.COUNTRY:
+        return filteredUsers.toSorted((a: User, b: User) =>
           // toSorted creates a copy of the users array, instead of mutating the original one (.sort does that)
-          return a.location.country.localeCompare(b.location.country)
-        })
-      : filteredUsers
-  }, [filteredUsers, sortByCountry])
+          a.location.country.localeCompare(b.location.country)
+        )
+      case SortBy.NAME:
+        return filteredUsers.toSorted((a: User, b: User) =>
+          a.name.first.localeCompare(b.name.first)
+        )
+      case SortBy.LAST:
+        return filteredUsers.toSorted((a: User, b: User) =>
+          a.name.last.localeCompare(b.name.last)
+        )
+      default:
+        return filteredUsers
+    }
+  }, [filteredUsers, sorted])
 
   useEffect(() => {
     fetch('https://randomuser.me/api?results=100')
@@ -68,17 +85,17 @@ function App() {
       <HeaderButtons
         toggleRowColors={toggleRowColors}
         areUsersAltered={areUsersAltered}
-        handleResetUsers={handleResetUsers}
-        sortByCountry={sortByCountry}
-        sortedByCountry={sortedByCountry}
+        resetUsers={handleResetUsers}
+        toggleSortByCountry={toggleSortByCountry}
+        sorted={sorted}
         setFilterCountry={setFilterCountry}
-        filterCountry={filterCountry}
       />
       <main>
         <UsersList
           users={sortedUsers}
           showRowColors={showRowColors}
           deleteUser={handleDeleteUser}
+          changeSort={handleChangeSort}
         />
       </main>
     </div>
