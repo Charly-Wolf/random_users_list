@@ -59,15 +59,6 @@ function App() {
         sortByCountry={sortByCountry}
         sortedByCountry={sortedByCountry}
       />
-      {/* <header className='buttons'>
-        <button onClick={toggleRowColors}>Color Rows</button>
-        <button onClick={sortByCountry}>
-          {sortedByCountry ? 'Default Order ' : 'Sort by Country'}
-        </button>
-        <button onClick={handleResetUsers} disabled={!areUsersAltered}>
-          Reset users
-        </button>
-      </header> */}
       <main>
         <UsersList
           users={sortedUsers}
